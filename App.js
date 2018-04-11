@@ -37,12 +37,8 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends React.Component {
-  // requestCameraPermission()
-  // check(permission);
   constructor(props) {
-    
     super(props);
-
     this.state = {
       latitude: null,
       longitude: null,
@@ -50,9 +46,8 @@ export default class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-
-    this.watchId = navigator.geolocation.watchPosition(
+  updateLocation = () => {
+    navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({
           latitude: position.coords.latitude,
@@ -61,22 +56,20 @@ export default class App extends React.Component {
         });
       },
       (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
     );
   }
 
-  componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchId);
+  componentDidMount() {
+    setInterval(()=>{ this.updateLocation()},1000)
   }
-
   render() {
     return (
-      <View >
-        <Text>Latitude: {this.state.latitude}</Text>
-        <Text>Longitude: {this.state.longitude}</Text>
-        {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
-      </View>
+      <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text >Latitude: {this.state.latitude}</Text>
+      <Text >Longitude: {this.state.longitude}</Text>
+      {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
+    </View>
     );
   }
 }
-

@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.CAMERA"/>
 
+
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -23,6 +24,10 @@
         </intent-filter>
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      <!-- GMaps API -->
+      <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyAOdDNykTuIzb9UWSQ27vfQVJlpwyD1W6I"/>
     </application>
 
 </manifest>

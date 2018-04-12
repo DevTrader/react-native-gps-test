@@ -1,7 +1,6 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+/*
+TO DO: https://github.com/react-community/react-native-maps/blob/master/docs/installation.md
+install google play services on emulated device
  */
 
 import React, { Component } from 'react';
@@ -13,7 +12,8 @@ import {
   PermissionsAndroid
 } from 'react-native';
 
-// import Permissions from 'react-native-permissions';
+import MapV from './components/Map';
+
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -21,19 +21,6 @@ const instructions = Platform.select({
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
-
-// Permissions.request('camera', {
-//   rationale: {
-//     title: 'Cool Photo App Camera Permission',
-//     message:
-//       'Cool Photo App needs access to your camera ' +
-//       'so you can take awesome pictures.',
-//   },
-// }).then(response => {
-//   this.setState({ cameraPermission: response })
-// })
-
-//requestCameraPermission();
 
 type Props = {};
 export default class App extends React.Component {
@@ -69,6 +56,7 @@ export default class App extends React.Component {
           <Text >Latitude: {this.state.latitude}</Text>
       <Text >Longitude: {this.state.longitude}</Text>
       {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
+      <MapV />
     </View>
     );
   }
